@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: rstudio
+  namespace: data-science
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: rstudio
+
+  template:
+    metadata:
+      labels:
+        app: rstudio
+
+    spec:
+      containers:
+        - name: rstudio
+          image: ghcr.io/jcampos79/k8s-rstudio/rstudio:latest
+
+          ports:
+            - containerPort: 8787
+
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rstudio-secret
+                  key: password
+
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+
+            limits:
+              cpu: "2"
+              memory: "4Gi"

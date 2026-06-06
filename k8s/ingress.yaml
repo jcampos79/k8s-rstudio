@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: rstudio
+  namespace: data-science
+
+spec:
+  ingressClassName: traefik
+
+  rules:
+    - host: rstudio.10.0.1.200.nip.io
+
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+
+            backend:
+              service:
+                name: rstudio
+                port:
+                  number: 80
