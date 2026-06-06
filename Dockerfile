@@ -1,5 +1,5 @@
 # Use rocker r-studio as baseline
-FROM rocker/rstudio:katest
+FROM rocker/rstudio:latest
 
 RUN apt-get  update && apt-get install -y \
     python3 \
