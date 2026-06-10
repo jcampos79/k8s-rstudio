@@ -6,7 +6,7 @@ metadata:
   namespace: data-science
 
 spec:
-  replicas: 1
+  replicas: 3
 
   selector:
     matchLabels:
